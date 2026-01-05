@@ -5,7 +5,7 @@ const ObjectId = Schema.ObjectId;
 
 const UserSchema = new Schema(
   {
-    username: String,
+    username: { type: String, unique: true },
     email: { type: String, unique: true },
     password: String,
     role: { type: String, enum: ["teacher", "student"] },

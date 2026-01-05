@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
+
 import { login } from "./routes/auth/login";
 import { signup } from "./routes/auth/signup";
+import { me } from "./routes/auth/me";
 
 await mongoose.connect(process.env.MONGO_DB_URL!);
 
@@ -18,6 +20,7 @@ const server = Bun.serve({
     "/": () => new Response("Hello"),
     "/signup": signup,
     "/login": login,
+    "/me": me
   },
 });
 
