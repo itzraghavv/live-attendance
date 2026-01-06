@@ -18,9 +18,9 @@ const server = Bun.serve({
   port: 3000,
   routes: {
     "/": () => new Response("Hello"),
-    "/signup": signup,
-    "/login": login,
-    "/me": me
+    "/auth/signup": signup,
+    "/auth/login": login,
+    "/auth/me": me
   },
 });
 
