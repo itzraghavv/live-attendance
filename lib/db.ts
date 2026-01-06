@@ -16,6 +16,7 @@ const UserSchema = new Schema(
 );
 
 const ClassSchema = new Schema({
+  _id: ObjectId,
   className: String,
   teacherId: ObjectId,
   studentIds: [ObjectId],
