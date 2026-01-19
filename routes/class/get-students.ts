@@ -11,13 +11,13 @@ export const getStudents = async (req: Request) => {
           success: false,
           error: "forbidden, teacher access required",
         }),
-        { status: 403 }
+        { status: 403 },
       );
     }
 
     const students = await UserModel.find(
       { role: "student" },
-      "_id username email"
+      "_id username email",
     );
 
     const formattedStudents = students.map((student) => ({
@@ -31,16 +31,15 @@ export const getStudents = async (req: Request) => {
         success: true,
         data: formattedStudents,
       }),
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error: any) {
     return new Response(
       JSON.stringify({
         success: false,
-        error: error.message || "unauthorized",
+        error: error.message,
       }),
-      { status: 401 }
+      { status: 401 },
     );
   }
 };
-

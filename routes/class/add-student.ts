@@ -2,7 +2,6 @@ import type z from "zod";
 import { StudentSchema } from "../../lib/zod/types";
 import { getAuthUser } from "../../lib/auth";
 import { ClassModel } from "../../lib/db";
-import { success } from "zod";
 
 export const addStudent = async (req: Request) => {
   try {
