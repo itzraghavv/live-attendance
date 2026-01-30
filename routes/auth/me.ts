@@ -12,7 +12,7 @@ export const me = async (req: Request) => {
         JSON.stringify({
           error: "user not found",
         }),
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -25,14 +25,14 @@ export const me = async (req: Request) => {
           email: user.email,
           role: user.role,
         },
-      })
+      }),
     );
   } catch (error: any) {
     return new Response(
       JSON.stringify({
         error: error.message,
       }),
-      { status: 401 }
+      { status: 401 },
     );
   }
 };

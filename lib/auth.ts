@@ -7,7 +7,6 @@ export type JWTPayload = {
 
 export const getAuthUser = async (req: Request) => {
   const authHeaders = req.headers.get("Authorization");
-  console.log(authHeaders);
 
   if (!authHeaders || !authHeaders.startsWith("Bearer ")) {
     throw new Error("invalid auth header");
