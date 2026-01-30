@@ -19,8 +19,10 @@ export const createClass = async (req: Request) => {
     }
 
     const { className } = body;
+    console.log("classname", className)
 
-    const isValidClass = ClassSchema.safeParse(className);
+    const isValidClass = ClassSchema.safeParse(body);
+    console.log(isValidClass)
     if (!isValidClass.success) {
       return new Response(
         JSON.stringify({

@@ -1,4 +1,3 @@
-import { json, success } from "zod";
 import { getAuthUser } from "../../lib/auth";
 import { UserModel } from "../../lib/db";
 
@@ -31,7 +30,6 @@ export const myAttendence = async (req: Request) => {
 
     const student = await UserModel.findOne({});
   } catch (error: any) {
-    // use proper err types ig
     return new Response(
       JSON.stringify({
         success: false,
