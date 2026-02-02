@@ -229,9 +229,19 @@ async function handleMessage(ws, rawMessage) {
         status,
       }),
     );
-
-    await AttendanceModel.insertMany(attendanceDocs);
-
+    try {
+      await AttendanceModel.insertMany(attendanceDocs);
+    } catch (error: any) {
+      ws.send(
+        JSON.stringify({
+          event: "Error",
+          data: {
+            message: error.message,
+          },
+        }),
+      );
+      return;
+    }
     // await AttendanceModel.create({
     //   classId,
     //   studentId: students,
