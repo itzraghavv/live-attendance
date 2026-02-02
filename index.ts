@@ -25,7 +25,7 @@ mongoose.connection.on("error", (err) => {
 type WSData = JWTPayload;
 
 const server = Bun.serve({
-  port: 3000,
+  port: process.env.PORT || 3000,
 
   fetch(req, server) {
     const url = new URL(req.url);

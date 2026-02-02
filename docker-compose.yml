@@ -1,0 +1,26 @@
+version: "1.0"
+
+services:
+  app:
+    build: .
+    container_name: "live-attendance"
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      - mongo
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:latest
+    container_name: "live-attendance-mongo"
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-data:/data/db
+    restart: unless-stopped
+
+volumes:
+  mongodb-data:
+    driver: local
