@@ -1,4 +1,5 @@
 import type z from "zod";
+
 import { StudentSchema } from "../../lib/zod/types";
 import { getAuthUser } from "../../lib/auth";
 import { ClassModel } from "../../lib/db";
@@ -14,7 +15,7 @@ export const addStudent = async (req: Request) => {
           success: false,
           error: "forbidden, teacher access required",
         }),
-        { status: 403 }
+        { status: 403 },
       );
     }
 
@@ -27,7 +28,7 @@ export const addStudent = async (req: Request) => {
           success: false,
           error: "invalid student",
         }),
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -43,7 +44,7 @@ export const addStudent = async (req: Request) => {
       {
         $addToSet: { studentIds: studentId },
       },
-      { new: true }
+      { new: true },
     );
 
     if (!updatedClass) {
@@ -52,16 +53,24 @@ export const addStudent = async (req: Request) => {
           success: true,
           data: updatedClass,
         }),
-        { status: 200 }
+        { status: 200 },
       );
     }
+
+    return new Response(
+      JSON.stringify({
+        success: true,
+        data: updatedClass,
+      }),
+      { status: 200 },
+    );
   } catch (error: any) {
     return new Response(
       JSON.stringify({
         success: false,
         error: error.message,
       }),
-      { status: 401 }
+      { status: 401 },
     );
   }
 };
